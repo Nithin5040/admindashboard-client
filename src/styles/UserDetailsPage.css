@@ -1,0 +1,188 @@
+/* UserDetailsPage.css */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f9ff;
+}
+
+.user-details-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.user-details-card {
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.user-details-card h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.user-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 8px 0;
+}
+
+strong {
+  color: #007bff;
+}
+
+.image-upload-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.file-input {
+  width: 100%;
+  max-width: 250px;
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-input:hover {
+  background-color: #0056b3;
+}
+
+.image-previews {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.image-preview-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.image-small {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.image-small:hover {
+  transform: scale(1.1);
+}
+
+.proceed-button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  width: 100%;
+  max-width: 220px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.proceed-button:hover {
+  background-color: #218838;
+}
+
+.success-message {
+  margin-top: 20px;
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .user-details-card {
+    padding: 15px;
+    margin: 15px;
+  }
+
+  .file-input, .proceed-button {
+    max-width: 100%;
+  }
+
+  .image-upload-section, .image-previews {
+    flex-direction: column;
+  }
+
+  .image-small {
+    margin: 10px auto;
+  }
+}
+.image-small {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 10px;
+  display: block;
+}
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-file-upload:hover {
+  background: linear-gradient(135deg, #0056b3, #003b7a);
+  transform: scale(1.05);
+}
+
+.custom-file-upload input {
+  display: none; /* Hide default file input */
+}
+.refresh-location-button {
+  background-color: #15558a;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.refresh-location-button:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}

@@ -1,0 +1,606 @@
+ /* Apply stylish font */ 
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+ body {
+   font-family: 'Poppins', sans-serif;
+   background: linear-gradient(to right, #ff9a8b, #ff6a88);
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+ 
+ /* Center content */
+ .auth-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   max-width: 400px;
+   background: white;
+   padding: 20px;
+   border-radius: 12px;
+   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+   animation: fadeIn 0.5s ease-in;
+ }
+ 
+ /* Logo styling */
+ .logo {
+   width: 150px;
+   height: auto;
+   margin-bottom: 15px;
+ }
+ 
+ /* Form styling */
+ .auth-form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+ 
+ .auth-form input {
+   width: 90%;
+   padding: 10px;
+   margin: 10px 0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 14px;
+   background: #fff;
+   color: #333;
+ }
+ 
+ /* Buttons */
+ .btn {
+   width: 100%;
+   padding: 12px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: all 0.3s ease-in-out;
+   margin-top: 10px;
+   background: #007bff; /* Default button color */
+   color: white;
+ }
+ 
+ .btn:hover {
+   background: #0056b3;
+ }
+ 
+ /* Profile Buttons */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Stylish Back to Login Button */
+ .btn-back {
+   background: #4CAF50;
+   color: white;
+ }
+ 
+ .btn-back:hover {
+   background: #3e8e41;
+ }
+ 
+ /* Stylish Logout Button */
+ .btn-logout {
+   padding: 10px 18px;
+   font-size: 15px;
+   background: #f44336;
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-logout:hover {
+   background: #d32f2f;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* User list */
+ .user-list {
+   list-style: none;
+   padding: 0;
+ }
+ 
+ .user-list li {
+   background: white;
+   padding: 10px;
+   border-radius: 8px;
+   margin: 5px 0;
+   width: 300px;
+   text-align: center;
+   font-size: 14px;
+   font-weight: 600;
+   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+   color: #333;
+ }
+ 
+ /* Button container */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Stylish Back to Login Button */
+ .btn-back {
+   padding: 10px 18px;
+   font-size: 15px;
+   background: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-back:hover {
+   background: #3e8e41;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Fade-in animation */
+ @keyframes fadeIn {
+   from { opacity: 0; transform: translateY(-20px); }
+   to { opacity: 1; transform: translateY(0); }
+ }
+ 
+ /* Apply stylish font */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+ 
+ body {
+   font-family: 'Poppins', sans-serif;
+   background: linear-gradient(to right, #ff9a8b, #ff6a88);
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+ 
+ /* Center content */
+ .auth-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   max-width: 400px;
+   background: white;
+   padding: 20px;
+   border-radius: 12px;
+   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+   animation: fadeIn 0.5s ease-in;
+ }
+ 
+ /* Logo styling */
+ .logo {
+   width: 150px;
+   height: auto;
+   margin-bottom: 15px;
+ }
+ 
+ /* Form styling */
+ .auth-form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+ 
+ .auth-form input {
+   width: 90%;
+   padding: 10px;
+   margin: 10px 0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 14px;
+ }
+ 
+ /* Buttons */
+ .btn {
+   width: 100%;
+   padding: 12px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: all 0.3s ease-in-out;
+   margin-top: 10px;
+ }
+ 
+ .btn-login {
+   background: #4CAF50;
+   color: white;
+ }
+ 
+ .btn-login:hover {
+   background: #3e8e41;
+ }
+ 
+ .btn-signup {
+   background: #008CBA;
+   color: white;
+ }
+ 
+ .btn-signup:hover {
+   background: #005f73;
+ }
+ 
+ /* Profile Buttons */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Stylish Back to Login Button */
+ .btn-back {
+   background: #4CAF50;
+   color: white;
+ }
+ 
+ .btn-back:hover {
+   background: #3e8e41;
+ }
+ 
+ /* Stylish Logout Button */
+ .btn-logout {
+   background: #f44336;
+   color: white;
+ }
+ 
+ .btn-logout:hover {
+   background: #d32f2f;
+ }
+ 
+ /* Fade-in animation */
+ @keyframes fadeIn {
+   from { opacity: 0; transform: translateY(-20px); }
+   to { opacity: 1; transform: translateY(0); }
+ }
+ /* Apply stylish font */
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+ 
+ body {
+   font-family: 'Poppins', sans-serif;
+   background: linear-gradient(to right, #ff9a8b, #ff6a88);
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+ 
+ /* Center content */
+ .auth-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   max-width: 400px;
+   background: white;
+   padding: 20px;
+   border-radius: 12px;
+   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+   animation: fadeIn 0.5s ease-in;
+ }
+ 
+ /* Logo styling */
+ .logo {
+   width: 150px;
+   height: auto;
+   margin-bottom: 15px;
+ }
+ 
+ /* Form styling */
+ .auth-form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+ 
+ .auth-form input {
+   width: 90%;
+   padding: 10px;
+   margin: 10px 0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 14px;
+ }
+ 
+ /* Buttons */
+ .btn {
+   width: 100%;
+   padding: 12px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: all 0.3s ease-in-out;
+   margin-top: 10px;
+ }
+ 
+ .btn-login {
+   background: #4CAF50;
+   color: white;
+ }
+ 
+ .btn-login:hover {
+   background: #3e8e41;
+ }
+ 
+ .btn-signup {
+   background: #008CBA;
+   color: white;
+ }
+ 
+ .btn-signup:hover {
+   background: #005f73;
+ }
+ 
+ /* Admin Button */
+ .btn-admin {
+   background: #f57c00;
+   color: white;
+ }
+ 
+ .btn-admin:hover {
+   background: #e65100;
+ }
+ 
+ /* Profile Buttons */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Stylish Back to Login Button */
+ .btn-back {
+   background: #4CAF50;
+   color: white;
+ }
+ 
+ .btn-back:hover {
+   background: #3e8e41;
+ }
+ 
+ /* Stylish Logout Button */
+ .btn-logout {
+   background: #f44336;
+   color: white;
+ }
+ 
+ .btn-logout:hover {
+   background: #d32f2f;
+ }
+ 
+ /* Admin Login Button */
+ .admin-login {
+   margin-top: 20px;
+   text-align: center;
+ }
+ 
+ .btn-admin {
+   width: 100%;
+   padding: 12px;
+   background: #f57c00;  /* Attractive Orange */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-admin:hover {
+   background: #e65100;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Admin Dashboard Buttons */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Logout Button */
+ .btn-logout {
+   padding: 12px 20px;
+   font-size: 16px;
+   background: #f44336; /* Red */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-logout:hover {
+   background: #d32f2f;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Clear Data Button */
+ .btn-clear {
+   padding: 12px 20px;
+   font-size: 16px;
+   background: #ff9800; /* Orange */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-clear:hover {
+   background: #e68900;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ /* Admin Dashboard Buttons */
+ .button-group {
+   display: flex;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ /* Refresh Button */
+ .btn-refresh {
+   padding: 12px 20px;
+   font-size: 16px;
+   background: #2196F3; /* Blue */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-refresh:hover {
+   background: #1976D2;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Logout Button */
+ .btn-logout {
+   padding: 12px 20px;
+   font-size: 16px;
+   background: #f44336; /* Red */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-logout:hover {
+   background: #d32f2f;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Clear Data Button */
+ .btn-clear {
+   padding: 12px 20px;
+   font-size: 16px;
+   background: #ff9800; /* Orange */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-clear:hover {
+   background: #e68900;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ /* Admin Login Section */
+ .admin-login {
+   margin-top: 20px;
+   text-align: center;
+ }
+ 
+ /* Admin Login Button */
+ .btn-admin {
+   width: 100%;
+   padding: 12px;
+   background: #f57c00;  /* Orange */
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   font-weight: bold;
+   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .btn-admin:hover {
+   background: #e65100;
+   transform: scale(1.05);
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ /* Add these styles to Auth.css */
+.auth-form-input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: #fff;
+  color: #333;
+}
+
+.auth-form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.auth-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.auth-form input, .auth-form button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.auth-form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
