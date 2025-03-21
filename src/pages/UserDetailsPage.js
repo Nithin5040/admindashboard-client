@@ -87,15 +87,16 @@ const UserDetailsPage = () => {
     if (image1) {
       const imgData1 = await toBase64(image1);
       doc.text('Image 1:', 20, yPos);
-      doc.addImage(imgData1, 'JPEG', 20, yPos + 5, 80, 60);
+      doc.addImage(imgData1, 'JPEG', 20, yPos + 5, 60, 60); // 👈 reduced width from 80 to 60
       yPos += 70;
     }
-
+    
     if (image2) {
       const imgData2 = await toBase64(image2);
       doc.text('Image 2:', 20, yPos);
-      doc.addImage(imgData2, 'JPEG', 20, yPos + 5, 80, 60);
+      doc.addImage(imgData2, 'JPEG', 20, yPos + 5, 60, 60); // 👈 consistent square ratio
     }
+    
 
     const cleanName = userDetails.name.replace(/\s+/g, ''); // remove spaces from name
     const fileName = `${userDetails.userid}_${cleanName}_details.pdf`;
