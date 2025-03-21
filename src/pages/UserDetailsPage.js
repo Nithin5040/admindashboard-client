@@ -97,7 +97,9 @@ const UserDetailsPage = () => {
       doc.addImage(imgData2, 'JPEG', 20, yPos + 5, 80, 60);
     }
 
-    const fileName = `${userDetails.userid}_details.pdf`;
+    const cleanName = userDetails.name.replace(/\s+/g, ''); // remove spaces from name
+    const fileName = `${userDetails.userid}_${cleanName}_details.pdf`;
+
     doc.save(fileName);
 
     alert('✅ PDF generated and saved offline!');

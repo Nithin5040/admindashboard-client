@@ -11,33 +11,34 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // 🔹 Check if email and password are not empty
-    if (!email || !password) {
-      setError('❌ Email and Password are required.');
+  
+    // 🔐 Updated password rule: min 6 chars, 1 letter, 1 number, 1 special character
+    const isValidPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(password);
+  
+    if (!isValidPassword) {
+      setError('❌ Password must be at least 6 characters and include letters, numbers, and one special character.');
       return;
     }
-
+  
     let existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-
-    // 🔹 Check if user already exists
+  
     if (existingUsers.some(user => user.email === email)) {
       setError('❌ Email already registered. Please log in.');
       return;
     }
-
-    // 🔹 Save new user
+  
     existingUsers.push({ email, password });
     localStorage.setItem('users', JSON.stringify(existingUsers));
-
-    // 🔹 Show success message and redirect to Main Page
+  
     setSuccess(true);
     setError('');
-    
+  
     setTimeout(() => {
-      navigate('/'); // 🔹 Redirect to Main Page ("/") after 2 seconds
+      navigate('/'); // redirect to main page
     }, 2000);
   };
+  
+  
 
   return (
     <div className="auth-container">
@@ -69,7 +70,7 @@ const Signup = () => {
 
         <div className="auth-links">
           <p>Already have an account?</p>
-          <button type="button" className="btn btn-login" onClick={() => navigate('/login')}>Login</button>
+          <button type="button" className="btn btn-login" onClick={() => navigate('/')}>Login</button>
         </div>
       </form>
     </div>
@@ -77,3 +78,5 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
