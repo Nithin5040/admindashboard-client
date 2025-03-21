@@ -5,17 +5,51 @@ import '../styles/UserDetailsPage.css';
 
 const UserDetailsPage = () => {
   const location = useLocation();
-  const { userDetails } = location.state || {}; // Get selected user details
+  const { userDetails } = location.state || {};
   const [geoLocation, setGeoLocation] = useState('Fetching...');
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [preview1, setPreview1] = useState(null);
   const [preview2, setPreview2] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  const [uploadStatus1, setUploadStatus1] = useState("");
-  const [uploadStatus2, setUploadStatus2] = useState("");
+  const [uploadStatus1, setUploadStatus1] = useState('');
+  const [uploadStatus2, setUploadStatus2] = useState('');
 
-  // 🔹 Function to fetch location and ask for permission each time
+  // ✅ Enhanced toBase64 with canvas and rotation fix
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          let width = img.width;
+          let height = img.height;
+
+          const isPortrait = height > width;
+
+          if (isPortrait) {
+            canvas.width = height;
+            canvas.height = width;
+            ctx.translate(height, 0);
+            ctx.rotate(Math.PI / 2);
+            ctx.drawImage(img, 0, 0);
+          } else {
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0);
+          }
+
+          resolve(canvas.toDataURL('image/jpeg'));
+        };
+        img.onerror = reject;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
   const fetchLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -27,9 +61,9 @@ const UserDetailsPage = () => {
           console.error('Geolocation Error:', error);
         },
         {
-          enableHighAccuracy: true, // Ensures permission prompt every time
-          timeout: 5000, // Wait 5 seconds for location
-          maximumAge: 0, // Forces fresh location
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
         }
       );
     } else {
@@ -37,25 +71,18 @@ const UserDetailsPage = () => {
     }
   };
 
-  // 🔹 Fetch location every time a new user is selected
   useEffect(() => {
     if (userDetails) {
-      fetchLocation(); // Ask for location permission every time a user is selected
+      fetchLocation();
     }
-  }, [userDetails]); // Runs when userDetails changes
-
-  const toBase64 = (file) => new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-  });
+  }, [userDetails]);
 
   const handleImageUpload = (e, setImage, setPreview, setStatus) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
       setPreview(URL.createObjectURL(file));
-      setStatus("Uploaded ✅");
+      setStatus('Uploaded ✅');
     }
   };
 
@@ -63,12 +90,13 @@ const UserDetailsPage = () => {
     const doc = new jsPDF();
     const logoUrl = '/vishvin.avif';
 
-    const loadImage = (url) => new Promise((resolve) => {
-      const img = new Image();
-      img.src = url;
-      img.onload = () => resolve(img);
-      img.onerror = () => resolve(null);
-    });
+    const loadImage = (url) =>
+      new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+      });
 
     const logoImg = await loadImage(logoUrl);
     if (logoImg) {
@@ -87,22 +115,20 @@ const UserDetailsPage = () => {
     if (image1) {
       const imgData1 = await toBase64(image1);
       doc.text('Image 1:', 20, yPos);
-      doc.addImage(imgData1, 'JPEG', 20, yPos + 5, 60, 60); // 👈 reduced width from 80 to 60
+      doc.addImage(imgData1, 'JPEG', 20, yPos + 5, 60, 60);
       yPos += 70;
     }
-    
+
     if (image2) {
       const imgData2 = await toBase64(image2);
       doc.text('Image 2:', 20, yPos);
-      doc.addImage(imgData2, 'JPEG', 20, yPos + 5, 60, 60); // 👈 consistent square ratio
+      doc.addImage(imgData2, 'JPEG', 20, yPos + 5, 60, 60);
     }
-    
 
-    const cleanName = userDetails.name.replace(/\s+/g, ''); // remove spaces from name
+    const cleanName = userDetails.name.replace(/\s+/g, '');
     const fileName = `${userDetails.userid}_${cleanName}_details.pdf`;
 
     doc.save(fileName);
-
     alert('✅ PDF generated and saved offline!');
     setSubmitted(true);
   };
@@ -113,8 +139,12 @@ const UserDetailsPage = () => {
         <h2>{userDetails?.name}'s Details</h2>
 
         <div className="user-info">
-          <p><strong>ID:</strong> {userDetails?.userid}</p>
-          <p><strong>Location:</strong> {geoLocation}</p>
+          <p>
+            <strong>ID:</strong> {userDetails?.userid}
+          </p>
+          <p>
+            <strong>Location:</strong> {geoLocation}
+          </p>
         </div>
 
         <button className="refresh-location-button" onClick={fetchLocation}>
@@ -122,26 +152,22 @@ const UserDetailsPage = () => {
         </button>
 
         <div className="image-upload-section">
-          <label className={`custom-file-upload ${uploadStatus1 && "uploaded"}`}>
-            <input 
-              type="file" 
-              onChange={e => handleImageUpload(e, setImage1, setPreview1, setUploadStatus1)} 
-            />
-            {uploadStatus1 || "Upload Image 1"}
+          <label className={`custom-file-upload ${uploadStatus1 && 'uploaded'}`}>
+            <input type="file" onChange={(e) => handleImageUpload(e, setImage1, setPreview1, setUploadStatus1)} />
+            {uploadStatus1 || 'Upload Image 1'}
           </label>
           {preview1 && <img src={preview1} alt="Preview 1" className="image-small" />}
 
-          <label className={`custom-file-upload ${uploadStatus2 && "uploaded"}`}>
-            <input 
-              type="file" 
-              onChange={e => handleImageUpload(e, setImage2, setPreview2, setUploadStatus2)} 
-            />
-            {uploadStatus2 || "Upload Image 2"}
+          <label className={`custom-file-upload ${uploadStatus2 && 'uploaded'}`}>
+            <input type="file" onChange={(e) => handleImageUpload(e, setImage2, setPreview2, setUploadStatus2)} />
+            {uploadStatus2 || 'Upload Image 2'}
           </label>
           {preview2 && <img src={preview2} alt="Preview 2" className="image-small" />}
         </div>
 
-        <button className="proceed-button" onClick={handleSubmit}>Submit & Download PDF</button>
+        <button className="proceed-button" onClick={handleSubmit}>
+          Submit & Download PDF
+        </button>
 
         {submitted && <div className="success-message">Submitted and PDF downloaded!</div>}
       </div>
