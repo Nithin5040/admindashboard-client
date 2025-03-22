@@ -741,3 +741,147 @@ html, body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to right, #ff9a8b, #ff6a88);
 }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.auth-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  border: none;
+  margin-top: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-login {
+  background: #4caf50;
+}
+
+.btn-signup {
+  background: #007bff;
+}
+
+.btn-admin {
+  background: #f57c00;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Admin Profile */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-refresh {
+  background-color: #17a2b8;
+}
+
+.btn-clear {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-logout {
+  background-color: #dc3545;
+}
+
+/* User list */
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.user-list li {
+  padding: 10px;
+  margin: 5px 0;
+  background: #f1f1f1;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.btn-download {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-download:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}

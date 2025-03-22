@@ -1,3 +1,4 @@
+// ✅ Same as your last working version, with the CSV export button and function removed.
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
@@ -143,68 +144,25 @@ const UserDetailsPage = () => {
     setSubmitted(true);
   };
 
-  const exportAllUsersToCSV = () => {
-    const data = JSON.parse(localStorage.getItem('allUsers')) || [];
-
-    if (data.length === 0) {
-      alert('⚠️ No submissions found!');
-      return;
-    }
-
-    const rows = [['User ID', 'Name', 'Location', 'Timestamp']];
-    data.forEach((entry) => {
-      rows.push([entry.id, entry.name, entry.location, entry.timestamp]);
-    });
-
-    const csvContent =
-      'data:text/csv;charset=utf-8,' + rows.map((e) => e.join(',')).join('\n');
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute(
-      'download',
-      `All_Submissions_${new Date().toISOString().split('T')[0]}.csv`
-    );
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="user-details-page">
       <div className="user-details-card">
         <h2>{userDetails?.name}'s Details</h2>
         <div className="user-info">
-          <p>
-            <strong>ID:</strong> {userDetails?.userid}
-          </p>
-          <p>
-            <strong>Location:</strong> {geoLocation}
-          </p>
+          <p><strong>ID:</strong> {userDetails?.userid}</p>
+          <p><strong>Location:</strong> {geoLocation}</p>
         </div>
-        <button className="refresh-location-button" onClick={fetchLocation}>
-          🔄 Refresh Location
-        </button>
+        <button className="refresh-location-button" onClick={fetchLocation}>🔄 Refresh Location</button>
 
         <div className="image-upload-section">
           <label className={`custom-file-upload ${uploadStatus1 && 'uploaded'}`}>
-            <input
-              type="file"
-              onChange={(e) =>
-                handleImageUpload(e, setImage1, setPreview1, setUploadStatus1)
-              }
-            />
+            <input type="file" onChange={(e) => handleImageUpload(e, setImage1, setPreview1, setUploadStatus1)} />
             {uploadStatus1 || 'Upload Image 1'}
           </label>
           {preview1 && <img src={preview1} alt="Preview 1" className="image-small" />}
 
           <label className={`custom-file-upload ${uploadStatus2 && 'uploaded'}`}>
-            <input
-              type="file"
-              onChange={(e) =>
-                handleImageUpload(e, setImage2, setPreview2, setUploadStatus2)
-              }
-            />
+            <input type="file" onChange={(e) => handleImageUpload(e, setImage2, setPreview2, setUploadStatus2)} />
             {uploadStatus2 || 'Upload Image 2'}
           </label>
           {preview2 && <img src={preview2} alt="Preview 2" className="image-small" />}
@@ -214,15 +172,7 @@ const UserDetailsPage = () => {
           Submit & Download PDF 🧾
         </button>
 
-        <button className="proceed-button" onClick={exportAllUsersToCSV}>
-          📥 Download All Submissions CSV
-        </button>
-
-        {submitted && (
-          <div className="success-message">
-            Submitted and PDF downloaded successfully!
-          </div>
-        )}
+        {submitted && <div className="success-message">Submitted and PDF downloaded successfully!</div>}
       </div>
     </div>
   );

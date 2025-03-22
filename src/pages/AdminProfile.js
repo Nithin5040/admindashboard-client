@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Auth.css';
 
-
 const AdminProfile = () => {
   const navigate = useNavigate();
   const [loggedUsers, setLoggedUsers] = useState([]);
@@ -14,30 +13,49 @@ const AdminProfile = () => {
       alert('❌ Access Denied! Admins only.');
       navigate('/login');
     } else {
-      // ✅ Fetch logged-in users when the page loads
       fetchLoggedUsers();
     }
   }, [navigate]);
 
-  // ✅ Function to fetch the latest logged-in users
   const fetchLoggedUsers = () => {
     const loggedInUsers = JSON.parse(localStorage.getItem('loggedUsers')) || [];
     setLoggedUsers(loggedInUsers);
   };
 
-  // ✅ Function to clear only user data but keep admin logged in
   const handleClearData = () => {
     localStorage.removeItem('loggedUsers');
     setLoggedUsers([]);
     alert('✅ All user data has been cleared!');
   };
 
-  // ✅ Function to log out admin
   const handleLogout = () => {
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('isAdmin');
     navigate('/');
+  };
+
+  const exportAllUsersToCSV = () => {
+    const data = JSON.parse(localStorage.getItem('allUsers')) || [];
+
+    if (data.length === 0) {
+      alert('⚠️ No submission data found!');
+      return;
+    }
+
+    const rows = [['User ID', 'Name', 'Location', 'Timestamp']];
+    data.forEach(entry => {
+      rows.push([entry.id, entry.name, entry.location, entry.timestamp]);
+    });
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `All_Submissions_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -55,13 +73,14 @@ const AdminProfile = () => {
         <p>No users logged in yet.</p>
       )}
 
-      <div className="button-group">
-        <button className="btn-refresh" onClick={fetchLoggedUsers}>🔄 Refresh Data</button>
-        <button className="btn-clear" onClick={handleClearData}>🗑 Clear User Data</button>
-        <button className="btn-logout" onClick={handleLogout}>🚪 Logout</button>
-      </div>
+<div className="button-group">
+  <button className="btn-refresh" onClick={fetchLoggedUsers}>🔄 Refresh Data</button>
+  <button className="btn-clear" onClick={handleClearData}>🗑 Clear User Data</button>
+  <button className="btn-download" onClick={exportAllUsersToCSV}>📥 Download All Submissions CSV</button>
+  <button className="btn-logout" onClick={handleLogout}>🚪 Logout</button>
+</div>
     </div>
   );
 };
 
-export default AdminProfile; 
+export default AdminProfile;

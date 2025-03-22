@@ -214,3 +214,141 @@ strong {
   max-width: 250px;
   transition: background-color 0.3s, transform 0.3s;
 }
+/* Global Reset & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Page Container */
+.user-details-page {
+  width: 100%;
+  max-width: 900px;
+  padding: 30px;
+  margin: 20px;
+}
+
+/* Card Box */
+.user-details-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  text-align: center;
+}
+
+/* Heading */
+.user-details-card h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Info Text */
+.user-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+strong {
+  color: #007bff;
+}
+
+/* File Uploads */
+.image-upload-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.custom-file-upload {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.custom-file-upload.uploaded {
+  background-color: #28a745;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+/* Image Preview */
+.image-small {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 2px solid #eee;
+}
+
+/* Submit Button */
+.proceed-button {
+  background: #007bff;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.proceed-button:hover {
+  background: #0056b3;
+}
+
+/* Location Refresh */
+.refresh-location-button {
+  background-color: #ffc107;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin: 15px auto;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.refresh-location-button:hover {
+  background-color: #e0a800;
+}
+
+/* Success Message */
+.success-message {
+  margin-top: 20px;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+}
