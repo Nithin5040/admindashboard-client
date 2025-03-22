@@ -76,7 +76,7 @@ const AdminProfile = () => {
 <div className="button-group">
   <button className="btn-refresh" onClick={fetchLoggedUsers}>🔄 Refresh Data</button>
   <button className="btn-clear" onClick={handleClearData}>🗑 Clear User Data</button>
-  <button className="btn-download" onClick={exportAllUsersToCSV}>📥 Download All Submissions CSV</button>
+  <button className="btn-download" onClick={exportAllUsersToCSV}>📥 Submissions CSV</button>
   <button className="btn-logout" onClick={handleLogout}>🚪 Logout</button>
 </div>
     </div>
