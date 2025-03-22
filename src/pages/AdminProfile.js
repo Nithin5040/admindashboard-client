@@ -37,18 +37,23 @@ const AdminProfile = () => {
 
   const exportAllUsersToCSV = () => {
     const data = JSON.parse(localStorage.getItem('allUsers')) || [];
-
+  
     if (data.length === 0) {
       alert('⚠️ No submission data found!');
       return;
     }
-
-    const rows = [['User ID', 'Name', 'Location', 'Timestamp']];
+  
+    const rows = [['User ID', 'Name', 'Latitude', 'Longitude', 'Date', 'Time']];
+  
     data.forEach(entry => {
-      rows.push([entry.id, entry.name, entry.location, entry.timestamp]);
+      const latLong = entry.location.match(/Lat:\s*([\d.-]+),\s*Lon:\s*([\d.-]+)/);
+      const lat = latLong ? latLong[1] : '';
+      const lon = latLong ? latLong[2] : '';
+  
+      rows.push([entry.id, entry.name, lat, lon, entry.timestamp]);
     });
-
-    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\n');
+  
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(row => row.join(',')).join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
@@ -57,6 +62,7 @@ const AdminProfile = () => {
     link.click();
     document.body.removeChild(link);
   };
+  
 
   return (
     <div className="auth-container">
