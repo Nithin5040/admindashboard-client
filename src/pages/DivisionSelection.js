@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/DivisionSelection.css';
 import tempDatabase from './tempDatabase';
 
-
-
 const DivisionSelection = () => {
   const [division, setDivision] = useState('');
   const [subDivision, setSubDivision] = useState('');
@@ -25,7 +23,7 @@ const DivisionSelection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!division || !subDivision || !userId) {
-      setError('Please select all fields.');
+      setError('⚠️ Please select all fields.');
       return;
     }
 
@@ -34,30 +32,48 @@ const DivisionSelection = () => {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Select Division, Sub-Division & User</h2>
 
-        <select value={division} onChange={(e) => setDivision(e.target.value)} className="select-box">
-          <option value="">Division</option>
-          {divisions.map(div => <option key={div} value={div}>{div}</option>)}
+        <select
+          value={division}
+          onChange={(e) => setDivision(e.target.value)}
+          className="select-box"
+        >
+          <option value="">Select Division</option>
+          {divisions.map(div => (
+            <option key={div} value={div}>{div}</option>
+          ))}
         </select>
 
-        <select value={subDivision} onChange={(e) => setSubDivision(e.target.value)} className="select-box">
-          <option value="">Sub-Division</option>
-          {subDivisions.map(sub => <option key={sub} value={sub}>{sub}</option>)}
+        <select
+          value={subDivision}
+          onChange={(e) => setSubDivision(e.target.value)}
+          className="select-box"
+        >
+          <option value="">Select Sub-Division</option>
+          {subDivisions.map(sub => (
+            <option key={sub} value={sub}>{sub}</option>
+          ))}
         </select>
 
         {users.length > 0 && (
-          <select value={userId} onChange={(e) => setUserId(e.target.value)} className="select-box">
-            <option value="">User</option>
-            {users.map(u => <option key={u.userid} value={u.userid}>{u.name}</option>)}
+          <select
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            className="select-box"
+          >
+            <option value="">Select User</option>
+            {users.map(u => (
+              <option key={u.userid} value={u.userid}>{u.name}</option>
+            ))}
           </select>
         )}
 
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error-message">{error}</p>}
 
-        <button className="proceed-button">Proceed</button>
+        <button type="submit" className="btn btn-login">Proceed</button>
       </form>
     </div>
   );
