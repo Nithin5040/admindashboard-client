@@ -1,4 +1,3 @@
-// ✅ Same as your last working version, with the CSV export button and function removed.
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
@@ -144,6 +143,21 @@ const UserDetailsPage = () => {
     setSubmitted(true);
   };
 
+  const sendToWhatsApp = () => {
+    const phone = '918073782161'; // 👈 Your number in international format
+    const message = `📝 User Submission Details:
+
+User ID: ${userDetails.userid}
+Name: ${userDetails.name}
+Location: ${geoLocation}
+Date & Time: ${new Date().toLocaleString()}
+
+✅ Submitted Successfully!`;
+
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="user-details-page">
       <div className="user-details-card">
@@ -172,7 +186,16 @@ const UserDetailsPage = () => {
           Submit & Download PDF 🧾
         </button>
 
-        {submitted && <div className="success-message">Submitted and PDF downloaded successfully!</div>}
+        {submitted && (
+          <>
+            <div className="success-message">
+              Submitted and PDF downloaded successfully!
+            </div>
+            <button className="proceed-button" onClick={sendToWhatsApp}>
+              📤 Send to WhatsApp
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
