@@ -144,16 +144,8 @@ const UserDetailsPage = () => {
   };
 
   const sendToWhatsApp = () => {
-    const phone = '918073782161'; // 👈 Your number in international format
-    const message = `📝 User Submission Details:
-
-User ID: ${userDetails.userid}
-Name: ${userDetails.name}
-Location: ${geoLocation}
-Date & Time: ${new Date().toLocaleString()}
-
-✅ Submitted Successfully!`;
-
+    const phone = '918073782161';
+    const message = `📝 User Submission Details:\n\nUser ID: ${userDetails.userid}\nName: ${userDetails.name}\nLocation: ${geoLocation}\nDate & Time: ${new Date().toLocaleString()}\n\n✅ Submitted Successfully!`;
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -166,7 +158,9 @@ Date & Time: ${new Date().toLocaleString()}
           <p><strong>ID:</strong> {userDetails?.userid}</p>
           <p><strong>Location:</strong> {geoLocation}</p>
         </div>
-        <button className="refresh-location-button" onClick={fetchLocation}>🔄 Refresh Location</button>
+        <button className="refresh-location-button" onClick={fetchLocation}>
+          🔄 Refresh Location
+        </button>
 
         <div className="image-upload-section">
           <label className={`custom-file-upload ${uploadStatus1 && 'uploaded'}`}>
@@ -182,19 +176,19 @@ Date & Time: ${new Date().toLocaleString()}
           {preview2 && <img src={preview2} alt="Preview 2" className="image-small" />}
         </div>
 
-        <button className="proceed-button" onClick={handleSubmit}>
-          Submit & Download PDF 🧾
-        </button>
+        <div className="button-row">
+  <button className="btn-small btn-primary" onClick={handleSubmit}>Submit</button>
+  {submitted && (
+    <button className="btn-small btn-whatsapp" onClick={sendToWhatsApp}>Send</button>
+  )}
+</div>
+
+
 
         {submitted && (
-          <>
-            <div className="success-message">
-              Submitted and PDF downloaded successfully!
-            </div>
-            <button className="proceed-button" onClick={sendToWhatsApp}>
-              📤 Send to WhatsApp
-            </button>
-          </>
+          <div className="success-message">
+            Submitted and PDF downloaded successfully!
+          </div>
         )}
       </div>
     </div>
