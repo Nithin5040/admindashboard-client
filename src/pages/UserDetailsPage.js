@@ -123,11 +123,14 @@ const UserDetailsPage = () => {
 
     const logoImg = await loadImage(logoUrl);
     if (logoImg) {
-      doc.addImage(logoImg, 'PNG', 70, 10, 60, 20);
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const logoWidth = 60;
+      const centerX = (pageWidth - logoWidth) / 2;
+      doc.addImage(logoImg, 'PNG', centerX, 10, logoWidth, 20);
     }
 
     doc.setFontSize(16);
-    doc.text('User Details Submission', 70, 40);
+    // doc.text('User Details Submission', 70, 40);
     doc.setFontSize(12);
     doc.text(`User ID: ${userDetails.userid}`, 20, 60);
     doc.text(`Name: ${userDetails.name}`, 20, 70);
