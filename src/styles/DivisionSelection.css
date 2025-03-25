@@ -28,7 +28,7 @@ body {
 
 /* Title styling */
 h2 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: #333;
     margin-bottom: 20px;
     font-weight: 600;
@@ -221,5 +221,17 @@ h2 {
   .error {
     color: red;
     font-weight: bold;
+  }
+  .select-box {
+    font-size: 0.9rem; /* 👈 Smaller font size */
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
   }
   
