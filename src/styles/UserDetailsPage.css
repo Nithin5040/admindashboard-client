@@ -253,3 +253,32 @@ input[type='file'] {
 .btn-whatsapp:hover {
   background-color: #1ebe5d;
 }
+.location-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.navigate-button {
+  background-color: #17a2b8;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigate-button:hover {
+  background-color: #117a8b;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}

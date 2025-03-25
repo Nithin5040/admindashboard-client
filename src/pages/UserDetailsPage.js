@@ -7,6 +7,8 @@ const UserDetailsPage = () => {
   const location = useLocation();
   const { userDetails } = location.state || {};
   const [geoLocation, setGeoLocation] = useState('Fetching...');
+  const [lat, setLat] = useState(null);
+  const [lon, setLon] = useState(null);
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [preview1, setPreview1] = useState(null);
@@ -24,20 +26,19 @@ const UserDetailsPage = () => {
         img.onload = function () {
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
-          let width = img.width;
-          let height = img.height;
+          const width = img.width;
+          const height = img.height;
           const isPortrait = height > width;
           if (isPortrait) {
             canvas.width = height;
             canvas.height = width;
             ctx.translate(height, 0);
             ctx.rotate(Math.PI / 2);
-            ctx.drawImage(img, 0, 0);
           } else {
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, 0, 0);
           }
+          ctx.drawImage(img, 0, 0);
           resolve(canvas.toDataURL('image/jpeg'));
         };
         img.onerror = reject;
@@ -50,7 +51,11 @@ const UserDetailsPage = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          setGeoLocation(`Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`);
+          const latitude = pos.coords.latitude;
+          const longitude = pos.coords.longitude;
+          setLat(latitude);
+          setLon(longitude);
+          setGeoLocation(`Lat: ${latitude}, Lon: ${longitude}`);
         },
         (error) => {
           setGeoLocation('Location access denied or unavailable.');
@@ -64,6 +69,15 @@ const UserDetailsPage = () => {
       );
     } else {
       setGeoLocation('Geolocation is not supported.');
+    }
+  };
+
+  const openGoogleMaps = () => {
+    if (lat && lon) {
+      const mapsUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+      window.open(mapsUrl, '_blank');
+    } else {
+      alert('Please refresh to fetch location first.');
     }
   };
 
@@ -120,14 +134,12 @@ const UserDetailsPage = () => {
     doc.text(`Location: ${geoLocation}`, 20, 80);
 
     let yPos = 90;
-
     if (image1) {
       const imgData1 = await toBase64(image1);
       doc.text('Image 1:', 20, yPos);
       doc.addImage(imgData1, 'JPEG', 20, yPos + 5, 60, 60);
       yPos += 70;
     }
-
     if (image2) {
       const imgData2 = await toBase64(image2);
       doc.text('Image 2:', 20, yPos);
@@ -158,9 +170,11 @@ const UserDetailsPage = () => {
           <p><strong>ID:</strong> {userDetails?.userid}</p>
           <p><strong>Location:</strong> {geoLocation}</p>
         </div>
-        <button className="refresh-location-button" onClick={fetchLocation}>
-          🔄 Refresh Location
-        </button>
+
+        <div className="map-button-row">
+          <button className="refresh-location-button" onClick={fetchLocation}>Refresh</button>
+          <button className="navigate-button" onClick={openGoogleMaps}>Navigate</button>
+        </div>
 
         <div className="image-upload-section">
           <label className={`custom-file-upload ${uploadStatus1 && 'uploaded'}`}>
@@ -177,13 +191,9 @@ const UserDetailsPage = () => {
         </div>
 
         <div className="button-row">
-  <button className="btn-small btn-primary" onClick={handleSubmit}>Submit</button>
-  {submitted && (
-    <button className="btn-small btn-whatsapp" onClick={sendToWhatsApp}>Send</button>
-  )}
-</div>
-
-
+          <button className="btn-small btn-primary" onClick={handleSubmit}>Submit</button>
+          {submitted && <button className="btn-small btn-whatsapp" onClick={sendToWhatsApp}>Send</button>}
+        </div>
 
         {submitted && (
           <div className="success-message">
