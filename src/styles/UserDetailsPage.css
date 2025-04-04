@@ -1,0 +1,236 @@
+/* ============ Global Reset & Fonts ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ============ Page Layout ============ */
+.user-details-page {
+  width: 100%;
+  max-width: 900px;
+  padding: 30px;
+}
+
+.user-details-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  text-align: center;
+}
+
+/* ============ Heading ============ */
+.user-details-card h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* ============ Info Text ============ */
+.user-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+strong {
+  color: #007bff;
+}
+
+/* ============ Upload Buttons ============ */
+.image-upload-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  max-width: 200px;
+}
+
+.custom-file-upload.uploaded {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.custom-file-upload:hover {
+  background: linear-gradient(135deg, #0056b3, #003b7a);
+  transform: scale(1.05);
+}
+
+input[type='file'] {
+  display: none;
+}
+
+/* ============ Image Previews ============ */
+.image-small {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #eee;
+  margin-top: 10px;
+}
+
+/* ============ Buttons Row ============ */
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* ============ Small Button ============ */
+.btn-small {
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  max-width: 120px;
+  width: auto;
+}
+
+.btn-small:hover {
+  transform: scale(1.05);
+}
+
+/* ============ Submit Button ============ */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* ============ WhatsApp Button ============ */
+.btn-whatsapp {
+  background-color: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1ebe5d;
+}
+
+.whatsapp-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============ Location Button Row ============ */
+.map-button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.refresh-location-button,
+.navigate-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 1.2;
+  vertical-align: middle;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-location-button {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.refresh-location-button:hover {
+  background-color: #e0a800;
+}
+
+.navigate-button {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.navigate-button:hover {
+  background-color: #117a8b;
+}
+
+/* ============ Success Message ============ */
+.success-message {
+  margin-top: 20px;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============ Responsive ============ */
+@media screen and (max-width: 768px) {
+  .user-details-card {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .file-input,
+  .btn-small,
+  .custom-file-upload {
+    max-width: 100%;
+  }
+
+  .image-upload-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-small {
+    margin: 10px auto;
+  }
+
+  .button-row,
+  .map-button-row {
+    flex-direction: row !important;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
